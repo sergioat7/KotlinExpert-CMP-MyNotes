@@ -1,8 +1,9 @@
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.application
+package com.aragones.sergio.kotlinexpert.ui.screens.home
 
-class AppState {
+import androidx.compose.runtime.mutableStateOf
+import com.aragones.sergio.kotlinexpert.data.Note
+
+object HomeState {
     val notes = mutableStateOf(getNotes())
 
     private fun getNotes(): List<Note> = (1..10).map {
@@ -11,14 +12,5 @@ class AppState {
             "Description $it",
             if (it % 3 == 0) Note.Type.AUDIO else Note.Type.TEXT
         )
-    }
-}
-
-fun main() = application {
-    Window(
-        onCloseRequest = ::exitApplication,
-        title = "MyNotes",
-    ) {
-        App(AppState())
     }
 }
