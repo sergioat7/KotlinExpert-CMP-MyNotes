@@ -36,8 +36,20 @@ object HomeState {
         }
     }
 
+    fun onFilterClicked(filter: Filter) {
+        _state.update { it.copy(filter = filter) }
+    }
+
     data class UiState(
         val notes: List<Note>? = null,
-        val loading: Boolean = false
-    )
+        val loading: Boolean = false,
+        val filter: Filter = Filter.All
+    ) {
+
+        val filteredNotes: List<Note>?
+            get() = when (filter) {
+                Filter.All -> notes
+                is Filter.ByType -> notes?.filter { it.type == filter.type }
+            }
+    }
 }
