@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -14,7 +15,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
-fun HomeScreen() = with(HomeState) {
+fun HomeScreen(onAddClick: () -> Unit) = with(HomeState) {
 
     val state = state.collectAsState().value
 
@@ -26,6 +27,11 @@ fun HomeScreen() = with(HomeState) {
         Scaffold(
             topBar = {
                 TopBar(::onFilterClicked)
+            },
+            floatingActionButton = {
+                FloatingActionButton(onClick = onAddClick) {
+                    Icon(imageVector = Icons.Default.Add, contentDescription = null)
+                }
             }
         ) { padding ->
             Box(

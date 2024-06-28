@@ -3,9 +3,11 @@ package com.aragones.sergio.kotlinexpert.data
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 
-data class Note(val title: String, val description: String, val type: Type) {
+data class Note(val id: Long = NEW_NOTE_ID, val title: String, val description: String, val type: Type) {
     enum class Type { TEXT, AUDIO }
-    companion object
+    companion object {
+        const val NEW_NOTE_ID = 1L
+    }
 }
 
 val Note.Companion.fakeNotes
