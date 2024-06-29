@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -20,7 +21,7 @@ fun HomeScreen(viewModel: HomeViewModel, onNoteClick: (Long) -> Unit) {
     MaterialTheme {
         Scaffold(
             topBar = {
-                TopBar(viewModel::onFilterClicked)
+                TopBar(viewModel::onFilterClicked, viewModel::deleteAll)
             },
             floatingActionButton = {
                 FloatingActionButton(onClick = { onNoteClick(Note.NEW_NOTE_ID) }) {
@@ -46,7 +47,7 @@ fun HomeScreen(viewModel: HomeViewModel, onNoteClick: (Long) -> Unit) {
 }
 
 @Composable
-fun TopBar(onFilterClicked: (Filter) -> Unit) {
+fun TopBar(onFilterClicked: (Filter) -> Unit, onDeleteAll: () -> Unit) {
 
     var expanded by remember { mutableStateOf(false) }
 
@@ -75,6 +76,9 @@ fun TopBar(onFilterClicked: (Filter) -> Unit) {
                         }
                     }
                 }
+            }
+            IconButton(onClick = onDeleteAll) {
+                Icon(imageVector = Icons.Default.Delete, contentDescription = null)
             }
         }
     )

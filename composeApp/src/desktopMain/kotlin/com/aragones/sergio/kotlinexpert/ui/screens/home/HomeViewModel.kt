@@ -27,6 +27,13 @@ class HomeViewModel(private val scope: CoroutineScope) {
         state.update { it.copy(filter = filter) }
     }
 
+    fun deleteAll() = scope.launch {
+
+        state.update { UiState(loading = true) }
+        NotesRepository.deleteAll()
+        state.update { UiState(notes = emptyList()) }
+    }
+
     data class UiState(
         val notes: List<Note>? = null,
         val loading: Boolean = false,
