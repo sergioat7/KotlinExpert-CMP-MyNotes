@@ -1,7 +1,7 @@
 package com.aragones.sergio.kotlinexpert
 
-import kotlinx.coroutines.flow.MutableStateFlow
+import androidx.compose.runtime.MutableState
 
-fun <T> MutableStateFlow<T>.update(produceValue: (T) -> T) {
+fun <T> MutableState<T>.update(produceValue: (T) -> T) {
     this.value = produceValue(this.value)
 }

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 kotlin {
@@ -24,6 +25,10 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(compose.materialIconsExtended)
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.3")
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.okhttp)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
         }
     }
 }

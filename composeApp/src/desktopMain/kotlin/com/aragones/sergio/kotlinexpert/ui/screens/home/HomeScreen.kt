@@ -15,21 +15,15 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
-fun HomeScreen(onAddClick: () -> Unit) = with(HomeState) {
-
-    val state = state.collectAsState().value
-
-    LaunchedEffect(true) {
-        loadNotes()
-    }
+fun HomeScreen(viewModel: HomeViewModel, onNoteClick: (Long) -> Unit) {
 
     MaterialTheme {
         Scaffold(
             topBar = {
-                TopBar(::onFilterClicked)
+                TopBar(viewModel::onFilterClicked)
             },
             floatingActionButton = {
-                FloatingActionButton(onClick = onAddClick) {
+                FloatingActionButton(onClick = { onNoteClick(Note.NEW_NOTE_ID) }) {
                     Icon(imageVector = Icons.Default.Add, contentDescription = null)
                 }
             }
@@ -39,12 +33,12 @@ fun HomeScreen(onAddClick: () -> Unit) = with(HomeState) {
                 modifier = Modifier.fillMaxSize().padding(padding)
             ) {
 
-                if (state.loading) {
+                if (viewModel.state.value.loading) {
                     CircularProgressIndicator()
                 }
 
-                state.filteredNotes?.let {
-                    NoteList(it)
+                viewModel.state.value.filteredNotes?.let { notes ->
+                    NoteList(notes = notes, onNoteClick = { onNoteClick(it.id) })
                 }
             }
         }
