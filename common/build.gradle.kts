@@ -7,7 +7,11 @@ plugins {
 }
 
 kotlin {
+
     jvm("desktop")
+    js(IR){
+        browser()
+    }
 
     sourceSets {
 
@@ -28,6 +32,13 @@ kotlin {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.3")
                 implementation(libs.ktor.client.okhttp)
+            }
+        }
+
+        val jsMain by getting {
+            dependencies {
+                implementation(compose.web.core)
+                implementation(compose.runtime)
             }
         }
     }
