@@ -16,8 +16,10 @@ kotlin {
 
         val jsMain by getting {
             dependencies {
+                implementation(project(":common"))
                 implementation(compose.web.core)
                 implementation(compose.runtime)
+                implementation(libs.ktor.client.js)
             }
         }
     }

@@ -15,6 +15,8 @@ kotlin {
             dependencies {
                 implementation(project(":common"))
                 implementation(compose.desktop.currentOs)
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.3")
+                implementation(libs.ktor.client.okhttp)
             }
         }
     }

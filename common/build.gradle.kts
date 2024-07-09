@@ -28,12 +28,7 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
         }
 
-        val desktopMain by getting {
-            dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.3")
-                implementation(libs.ktor.client.okhttp)
-            }
-        }
+        val desktopMain by getting
 
         val jsMain by getting {
             dependencies {
