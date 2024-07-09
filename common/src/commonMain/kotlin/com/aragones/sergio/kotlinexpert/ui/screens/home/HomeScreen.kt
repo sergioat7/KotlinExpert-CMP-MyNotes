@@ -12,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.aragones.sergio.kotlinexpert.data.Note
+import com.aragones.sergio.kotlinexpert.getAppTitle
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -52,7 +53,7 @@ fun TopBar(onFilterClicked: (Filter) -> Unit, onDeleteAll: () -> Unit) {
     var expanded by remember { mutableStateOf(false) }
 
     TopAppBar(
-        title = { Text("My notes") },
+        title = { Text(getAppTitle()) },
         actions = {
             IconButton(onClick = { expanded = true }) {
                 Icon(

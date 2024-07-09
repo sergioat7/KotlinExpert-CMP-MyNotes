@@ -7,7 +7,7 @@ import com.aragones.sergio.kotlinexpert.ui.App
 fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
-        title = "MyNotes",
+        title = getAppTitle(),
     ) {
         App()
     }
