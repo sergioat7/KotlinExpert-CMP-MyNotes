@@ -5,10 +5,8 @@ import com.aragones.sergio.kotlinexpert.ui.screens.detail.DetailScreen
 import com.aragones.sergio.kotlinexpert.ui.screens.detail.DetailViewModel
 import com.aragones.sergio.kotlinexpert.ui.screens.home.HomeScreen
 import com.aragones.sergio.kotlinexpert.ui.screens.home.HomeViewModel
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-@Preview
 fun App() {
 
     var route: Route by remember { mutableStateOf(Route.Home) }
