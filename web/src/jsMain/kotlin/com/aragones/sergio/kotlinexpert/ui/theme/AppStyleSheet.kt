@@ -116,4 +116,19 @@ object AppStyleSheet : StyleSheet() {
         fontSize(20.px)
         fontWeight("bold")
     }
+
+    val detail by style {
+        padding(32.px)
+        display(DisplayStyle.Flex)
+        flexDirection(FlexDirection.Column)
+        gap(16.px)
+        maxWidth(600.px)
+        property("margin", "0 auto")
+    }
+
+    val detailInput by style {
+        padding(16.px)
+        borderRadius(4.px)
+        border(1.px, LineStyle.Solid, Color("#ccc"))
+    }
 }
