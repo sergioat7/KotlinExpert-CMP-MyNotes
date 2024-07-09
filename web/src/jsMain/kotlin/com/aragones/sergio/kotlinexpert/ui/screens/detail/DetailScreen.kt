@@ -2,6 +2,7 @@ package com.aragones.sergio.kotlinexpert.ui.screens.detail
 
 import androidx.compose.runtime.Composable
 import com.aragones.sergio.kotlinexpert.data.Note
+import com.aragones.sergio.kotlinexpert.ui.common.Icon
 import com.aragones.sergio.kotlinexpert.ui.theme.AppStyleSheet
 import org.jetbrains.compose.web.attributes.placeholder
 import org.jetbrains.compose.web.attributes.selected
@@ -78,28 +79,34 @@ private fun TypeDropdown(value: Note.Type, onValueChange: (Note.Type) -> Unit) {
 @Composable
 private fun TopBar(note: Note, onClose: () -> Unit, onSave: () -> Unit, onDelete: () -> Unit) {
     Div(attrs = { classes(AppStyleSheet.topBar) }) {
-        Button(attrs = {
-            onClick { onClose() }
-        }) {
-            Text("Close Detail")
-        }
+        Icon(
+            iconName = "arrow_back",
+            attrs = {
+                classes(AppStyleSheet.topBarIcon)
+                onClick { onClose() }
+            }
+        )
 
         H1(attrs = { classes(AppStyleSheet.topBarTitle) }) {
             Text(note.title)
         }
 
-        Button(attrs = {
-            onClick { onSave() }
-        }) {
-            Text("Save Note")
-        }
+        Icon(
+            iconName = "save",
+            attrs = {
+                classes(AppStyleSheet.topBarIcon)
+                onClick { onSave() }
+            }
+        )
 
         if (note.id != Note.NEW_NOTE_ID) {
-            Button(attrs = {
-                onClick { onDelete() }
-            }) {
-                Text("Delete Note")
-            }
+            Icon(
+                iconName = "delete",
+                attrs = {
+                    classes(AppStyleSheet.topBarIcon)
+                    onClick { onDelete() }
+                }
+            )
         }
     }
 }

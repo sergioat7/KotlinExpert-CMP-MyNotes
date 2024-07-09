@@ -2,6 +2,7 @@ package com.aragones.sergio.kotlinexpert.ui.screens.home
 
 import androidx.compose.runtime.Composable
 import com.aragones.sergio.kotlinexpert.data.Note
+import com.aragones.sergio.kotlinexpert.ui.common.Icon
 import com.aragones.sergio.kotlinexpert.ui.theme.AppStyleSheet
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text
@@ -34,7 +35,7 @@ fun HomeScreen(viewModel: HomeViewModel, onNoteClick: (Long) -> Unit) {
                 onClick { onNoteClick(Note.NEW_NOTE_ID) }
             }
         ) {
-            Text("+")
+            Icon("add")
         }
     }
 }
