@@ -28,4 +28,4 @@ dependencyResolutionManagement {
     }
 }
 
-include(":common", ":desktop", ":web")
+include(":common", ":desktop", ":web", ":android")
