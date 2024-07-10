@@ -44,7 +44,12 @@ kotlin {
             }
         }
 
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.kotlinx.coroutines.android)
+                implementation(libs.ktor.client.okhttp)
+            }
+        }
     }
 }
 

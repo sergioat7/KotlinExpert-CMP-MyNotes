@@ -3,8 +3,7 @@ package com.aragones.sergio.kotlinexpert
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import com.aragones.sergio.kotlinexpert.ui.App
 
 class MainActivity : ComponentActivity() {
 
@@ -12,9 +11,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MaterialTheme {
-                Text(getAppTitle())
-            }
+            App()
         }
     }
 }
