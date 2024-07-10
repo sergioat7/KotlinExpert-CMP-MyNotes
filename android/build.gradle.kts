@@ -27,14 +27,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-    buildFeatures {
-        viewBinding = true
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 }
 
@@ -42,5 +39,5 @@ dependencies {
     implementation(project(":common"))
     implementation(libs.compose)
     implementation(libs.androidx.appcompat)
-    implementation("androidx.compose.material:material:1.6.8")
+    implementation(libs.androidx.compose.material)
 }
