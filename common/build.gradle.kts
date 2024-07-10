@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.androidLibrary)
 }
 
 kotlin {
@@ -12,6 +13,7 @@ kotlin {
     js(IR){
         browser()
     }
+    androidTarget()
 
     sourceSets {
 
@@ -41,5 +43,21 @@ kotlin {
                 implementation(compose.runtime)
             }
         }
+
+        val androidMain by getting
+    }
+}
+
+android {
+    namespace = "com.aragones.sergio.kotlinexpert"
+    compileSdk = 34
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    defaultConfig {
+        minSdk = 24
+        targetSdk = 34
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }

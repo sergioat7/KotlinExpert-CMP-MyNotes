@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MaterialTheme {
-                Text("Hello world!")
+                Text(getAppTitle())
             }
         }
     }
