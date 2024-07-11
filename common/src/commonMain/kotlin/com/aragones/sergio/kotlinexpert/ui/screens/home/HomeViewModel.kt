@@ -1,6 +1,7 @@
 package com.aragones.sergio.kotlinexpert.ui.screens.home
 
 import androidx.compose.runtime.mutableStateOf
+import com.aragones.sergio.kotlinexpert.data.Filter
 import com.aragones.sergio.kotlinexpert.data.Note
 import com.aragones.sergio.kotlinexpert.data.remote.NotesRepository
 import com.aragones.sergio.kotlinexpert.update

@@ -1,6 +1,7 @@
 package com.aragones.sergio.kotlinexpert.ui.screens.home
 
 import androidx.compose.runtime.*
+import com.aragones.sergio.kotlinexpert.data.Filter
 import com.aragones.sergio.kotlinexpert.data.Note
 import com.aragones.sergio.kotlinexpert.getAppTitle
 import com.aragones.sergio.kotlinexpert.ui.common.Icon

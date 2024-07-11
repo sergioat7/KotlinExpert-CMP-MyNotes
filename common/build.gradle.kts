@@ -17,20 +17,27 @@ kotlin {
 
     sourceSets {
 
-        commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(compose.materialIconsExtended)
-            implementation(libs.ktor.client.core)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.serialization.kotlinx.json)
+        val commonMain by getting {
+            dependencies {
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation(compose.ui)
+                implementation(compose.components.resources)
+                implementation(compose.components.uiToolingPreview)
+                implementation(compose.materialIconsExtended)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.content.negotiation)
+                implementation(libs.ktor.serialization.kotlinx.json)
+            }
+        }
+
+        val commonComposeKmpMain by creating {
+            dependsOn(commonMain)
         }
 
         val desktopMain by getting {
+            dependsOn(commonComposeKmpMain)
             dependencies {
                 implementation(libs.kotlinx.coroutines.jvm)
                 implementation(libs.ktor.client.okhttp)
@@ -45,6 +52,7 @@ kotlin {
         }
 
         val androidMain by getting {
+            dependsOn(commonComposeKmpMain)
             dependencies {
                 implementation(libs.kotlinx.coroutines.android)
                 implementation(libs.ktor.client.okhttp)

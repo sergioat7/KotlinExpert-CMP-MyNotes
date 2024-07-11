@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.aragones.sergio.kotlinexpert.data.Filter
 import com.aragones.sergio.kotlinexpert.data.Note
 import com.aragones.sergio.kotlinexpert.getAppTitle
 import org.jetbrains.compose.ui.tooling.preview.Preview
