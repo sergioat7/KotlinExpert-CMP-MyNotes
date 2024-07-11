@@ -1,13 +1,14 @@
 package com.aragones.sergio.kotlinexpert.ui.screens.detail
 
 import androidx.compose.runtime.mutableStateOf
+import cafe.adriel.voyager.core.model.ScreenModel
+import cafe.adriel.voyager.core.model.screenModelScope
 import com.aragones.sergio.kotlinexpert.data.Note
 import com.aragones.sergio.kotlinexpert.data.remote.NotesRepository
 import com.aragones.sergio.kotlinexpert.update
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-class DetailViewModel(private val scope: CoroutineScope, private val noteId: Long) {
+class DetailViewModel(private val noteId: Long) : ScreenModel {
 
     var state = mutableStateOf(UiState())
         private set
@@ -18,7 +19,7 @@ class DetailViewModel(private val scope: CoroutineScope, private val noteId: Lon
         }
     }
 
-    fun save() = scope.launch {
+    fun save() = screenModelScope.launch {
 
         state.update { it.copy(loading = true) }
         val note = state.value.note
@@ -34,14 +35,14 @@ class DetailViewModel(private val scope: CoroutineScope, private val noteId: Lon
         state.update { it.copy(note = note) }
     }
 
-    fun delete() = scope.launch {
+    fun delete() = screenModelScope.launch {
 
         state.update { it.copy(loading = true) }
         NotesRepository.delete(state.value.note)
         state.update { it.copy(saved = true) }
     }
 
-    private fun loadNote() = scope.launch {
+    private fun loadNote() = screenModelScope.launch {
 
         state.update { UiState(loading = true) }
         val note = NotesRepository.getById(noteId)

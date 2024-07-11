@@ -30,6 +30,7 @@ kotlin {
                 implementation(libs.ktor.client.content.negotiation)
                 implementation(libs.ktor.serialization.kotlinx.json)
                 implementation(libs.voyager.navigator)
+                implementation(libs.voyager.screenmodel)
             }
         }
 
@@ -40,7 +41,7 @@ kotlin {
         val desktopMain by getting {
             dependsOn(commonComposeKmpMain)
             dependencies {
-                implementation(libs.kotlinx.coroutines.jvm)
+                implementation(libs.kotlinx.coroutines.swing)
                 implementation(libs.ktor.client.okhttp)
             }
         }

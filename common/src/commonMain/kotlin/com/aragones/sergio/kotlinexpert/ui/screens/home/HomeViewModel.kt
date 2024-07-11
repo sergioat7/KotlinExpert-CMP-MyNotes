@@ -1,14 +1,15 @@
 package com.aragones.sergio.kotlinexpert.ui.screens.home
 
 import androidx.compose.runtime.mutableStateOf
+import cafe.adriel.voyager.core.model.ScreenModel
+import cafe.adriel.voyager.core.model.screenModelScope
 import com.aragones.sergio.kotlinexpert.data.Filter
 import com.aragones.sergio.kotlinexpert.data.Note
 import com.aragones.sergio.kotlinexpert.data.remote.NotesRepository
 import com.aragones.sergio.kotlinexpert.update
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val scope: CoroutineScope) {
+class HomeViewModel : ScreenModel {
 
     var state = mutableStateOf(UiState())
         private set
@@ -17,7 +18,7 @@ class HomeViewModel(private val scope: CoroutineScope) {
         loadNotes()
     }
 
-    private fun loadNotes() = scope.launch {
+    private fun loadNotes() = screenModelScope.launch {
 
         state.update { UiState(loading = true) }
         val notes = NotesRepository.getAll()
@@ -28,7 +29,7 @@ class HomeViewModel(private val scope: CoroutineScope) {
         state.update { it.copy(filter = filter) }
     }
 
-    fun deleteAll() = scope.launch {
+    fun deleteAll() = screenModelScope.launch {
 
         state.update { UiState(loading = true) }
         NotesRepository.deleteAll()
