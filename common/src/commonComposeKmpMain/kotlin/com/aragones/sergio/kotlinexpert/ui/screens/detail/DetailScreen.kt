@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.aragones.sergio.kotlinexpert.data.Note
 
 @Composable
-fun DetailScreen(viewModel: DetailViewModel, onClose: () -> Unit) {
+actual fun DetailScreen(viewModel: DetailViewModel, onClose: () -> Unit) {
 
     val note = viewModel.state.value.note
 

@@ -18,7 +18,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
-fun HomeScreen(viewModel: HomeViewModel, onNoteClick: (Long) -> Unit) {
+actual fun HomeScreen(viewModel: HomeViewModel, onNoteClick: (Long) -> Unit) {
 
     MaterialTheme {
         Scaffold(

@@ -8,7 +8,7 @@ import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Text
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel, onNoteClick: (Long) -> Unit) {
+actual fun HomeScreen(viewModel: HomeViewModel, onNoteClick: (Long) -> Unit) {
 
     Div(attrs = { classes(AppStyleSheet.home) }
 

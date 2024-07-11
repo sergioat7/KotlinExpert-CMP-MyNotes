@@ -9,7 +9,7 @@ import org.jetbrains.compose.web.attributes.selected
 import org.jetbrains.compose.web.dom.*
 
 @Composable
-fun DetailScreen(viewModel: DetailViewModel, onClose: () -> Unit) {
+actual fun DetailScreen(viewModel: DetailViewModel, onClose: () -> Unit) {
 
     val note = viewModel.state.value.note
 
