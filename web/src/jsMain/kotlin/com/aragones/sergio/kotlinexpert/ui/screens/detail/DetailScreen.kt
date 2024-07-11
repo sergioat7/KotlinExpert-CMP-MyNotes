@@ -9,23 +9,23 @@ import org.jetbrains.compose.web.attributes.selected
 import org.jetbrains.compose.web.dom.*
 
 @Composable
-fun DetailScreen(vm: DetailViewModel, onClose: () -> Unit) {
+fun DetailScreen(viewModel: DetailViewModel, onClose: () -> Unit) {
 
-    val note = vm.state.value.note
+    val note = viewModel.state.value.note
 
     Div {
         TopBar(
             note = note,
             onClose = onClose,
-            onSave = vm::save,
-            onDelete = vm::delete
+            onSave = viewModel::save,
+            onDelete = viewModel::delete
         )
 
-        if (vm.state.value.saved) {
+        if (viewModel.state.value.saved) {
             onClose()
         }
 
-        if (vm.state.value.loading) {
+        if (viewModel.state.value.loading) {
             Text("Loading...")
         } else {
             Div(attrs = { classes(AppStyleSheet.detail) }) {
@@ -34,19 +34,19 @@ fun DetailScreen(vm: DetailViewModel, onClose: () -> Unit) {
                     attrs = {
                         classes(AppStyleSheet.detailInput)
                         placeholder("Title")
-                        onInput { vm.update(note.copy(title = it.value)) }
+                        onInput { viewModel.update(note.copy(title = it.value)) }
                     }
                 )
                 TypeDropdown(
                     value = note.type,
-                    onValueChange = { vm.update(note.copy(type = it)) }
+                    onValueChange = { viewModel.update(note.copy(type = it)) }
                 )
                 TextArea(
                     value = note.description,
                     attrs = {
                         classes(AppStyleSheet.detailInput)
                         placeholder("Description")
-                        onInput { vm.update(note.copy(description = it.value)) }
+                        onInput { viewModel.update(note.copy(description = it.value)) }
                     }
                 )
             }
