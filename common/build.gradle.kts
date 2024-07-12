@@ -1,3 +1,4 @@
+@file:Suppress("OPT_IN_USAGE")
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -8,12 +9,22 @@ plugins {
 }
 
 kotlin {
+    applyDefaultHierarchyTemplate()
 
     jvm("desktop")
-    js(IR){
+    js(IR) {
         browser()
     }
     androidTarget()
+    listOf(
+        iosArm64(),
+        iosX64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "common"
+        }
+    }
 
     sourceSets {
 
@@ -60,6 +71,8 @@ kotlin {
                 implementation(libs.ktor.client.okhttp)
             }
         }
+
+        val iosMain by getting
     }
 }
 
