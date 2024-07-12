@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Close
@@ -29,37 +29,39 @@ actual fun DetailScreen(viewModel: DetailViewModel, onClose: () -> Unit) {
                 onDelete = viewModel::delete,
             )
         },
-    ) {
+    ) { padding ->
 
-        if (viewModel.state.value.saved) {
-            onClose()
-        }
+        Box(modifier = Modifier.padding(padding)) {
+            if (viewModel.state.value.saved) {
+                onClose()
+            }
 
-        if (viewModel.state.value.loading) {
-            CircularProgressIndicator()
-        } else {
+            if (viewModel.state.value.loading) {
+                CircularProgressIndicator()
+            } else {
 
-            Column(modifier = Modifier.padding(32.dp)) {
-                OutlinedTextField(
-                    value = note.title,
-                    onValueChange = { viewModel.update(note.copy(title = it)) },
-                    modifier = Modifier.fillMaxWidth(),
-                    label = { Text("Title") },
-                    maxLines = 1
-                )
-                TypeDropdown(
-                    value = note.type,
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp),
-                    onValueChange = {
-                        viewModel.update(note.copy(type = it))
-                    }
-                )
-                OutlinedTextField(
-                    value = note.description,
-                    onValueChange = { viewModel.update(note.copy(description = it)) },
-                    modifier = Modifier.fillMaxWidth().weight(1f),
-                    label = { Text("Description") },
-                )
+                Column(modifier = Modifier.padding(32.dp)) {
+                    OutlinedTextField(
+                        value = note.title,
+                        onValueChange = { viewModel.update(note.copy(title = it)) },
+                        modifier = Modifier.fillMaxWidth(),
+                        label = { Text("Title") },
+                        maxLines = 1
+                    )
+                    TypeDropdown(
+                        value = note.type,
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 24.dp),
+                        onValueChange = {
+                            viewModel.update(note.copy(type = it))
+                        }
+                    )
+                    OutlinedTextField(
+                        value = note.description,
+                        onValueChange = { viewModel.update(note.copy(description = it)) },
+                        modifier = Modifier.fillMaxWidth().weight(1f),
+                        label = { Text("Description") },
+                    )
+                }
             }
         }
     }
@@ -78,14 +80,16 @@ private fun TypeDropdown(value: Note.Type, modifier: Modifier = Modifier, onValu
         })
         DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             Note.Type.entries.forEach {
-                DropdownMenuItem(onClick = { onValueChange(it); expanded = false }) {
-                    Text(it.name)
-                }
+                DropdownMenuItem(
+                    text = { Text(it.name) },
+                    onClick = { onValueChange(it); expanded = false }
+                )
             }
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun DetailTopAppBar(
     note: Note, onClose: () -> Unit, onSave: () -> Unit, onDelete: () -> Unit

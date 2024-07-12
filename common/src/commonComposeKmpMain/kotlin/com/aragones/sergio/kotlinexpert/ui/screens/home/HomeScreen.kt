@@ -3,7 +3,7 @@ package com.aragones.sergio.kotlinexpert.ui.screens.home
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
@@ -48,6 +48,7 @@ actual fun HomeScreen(viewModel: HomeViewModel, onNoteClick: (Long) -> Unit) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(onFilterClicked: (Filter) -> Unit, onDeleteAll: () -> Unit) {
 
@@ -70,12 +71,15 @@ fun TopBar(onFilterClicked: (Filter) -> Unit, onDeleteAll: () -> Unit) {
                     )
                     for ((filter, text) in items) {
 
-                        DropdownMenuItem(onClick = {
-                            expanded = false
-                            onFilterClicked(filter)
-                        }) {
-                            Text(text)
-                        }
+                        DropdownMenuItem(
+                            text = {
+                                Text(text)
+                            },
+                            onClick = {
+                                expanded = false
+                                onFilterClicked(filter)
+                            }
+                        )
                     }
                 }
             }
