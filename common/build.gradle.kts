@@ -72,7 +72,12 @@ kotlin {
             }
         }
 
-        val iosMain by getting
+        val iosMain by getting {
+            dependsOn(commonComposeKmpMain)
+            dependencies {
+                implementation(libs.ktor.client.darwin)
+            }
+        }
     }
 }
 
